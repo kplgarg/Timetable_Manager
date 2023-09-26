@@ -3,18 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-brands-svg-icons": "^6.2.1",
-    "@fortawesome/free-regular-svg-icons": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@react-oauth/google": "^0.7.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "apexcharts": "^3.36.3",
-    "axios": "^1.2.4",
-    "bcrypt": "^5.1.0",
+    "apexcharts": "^3.42.0",
+    "axios": "^1.5.0",
     "browser-router": "^0.2.0",
     "chart.js": "^4.2.0",
     "cookie-session": "^2.0.0",
@@ -22,22 +24,22 @@
     "jwt-decode": "^3.1.2",
     "mongoose-findorcreate": "^3.0.0",
     "nodemailer": "^6.9.1",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.0.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2",
     "react": "^18.2.0",
-    "react-apexcharts": "^1.4.0",
+    "react-apexcharts": "^1.4.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-facebook-login": "^4.1.1",
     "react-icons": "^4.7.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "recharts": "^2.3.2",
     "recharts-scale": "^0.4.5",
     "routes": "^2.1.0",
-    "validator": "^13.7.0",
+    "validator": "^13.11.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -65,6 +67,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.8.0"
+    "react-router-dom": "^6.16.0"
   }
 }

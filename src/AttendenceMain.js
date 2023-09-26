@@ -7,6 +7,7 @@ export default function AttendenceMain() {
     let urll = `${BACKEND_URL}/app/getdata/` + JSON.parse(localStorage.getItem('user_id')).data
     const [code, setCode] = useState([])
     const [percent, setPercent] = useState([])
+    const totalclass =[14,14,14,14,14,56,56,56,56,42,56,56,14,14,14,14,14,56,56,56,56,42,56,56]
     useEffect(() => {
         const newcode = [];
         const newpercent = []
@@ -16,7 +17,7 @@ export default function AttendenceMain() {
             for (let i = 0; i < bbb.length; i++) {
                 if (bbb[i].slot !== "") {
                     newcode.push(bbb[i].slot);
-                    newpercent.push(Math.floor(100 * (bbb[i].classAttend / bbb[i].classTotal)))
+                    newpercent.push(Math.floor(100 * (bbb[i].classAttend / totalclass[i])))
                 }
             }
             setCode(newcode)

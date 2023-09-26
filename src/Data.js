@@ -1,146 +1,123 @@
 export default [
     {
-        slotname: "A",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "B",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "C",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "D",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "E",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "F",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "G",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "A1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "B1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "C1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "D1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "E1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
+    },
+    
+    {
+        slot: "",
+        classAttend: 0,
+        isAble:false
     },
     {
-        slotname: "F1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "G1",
         slot: "",
         classAttend: 0,
-        classTotal:56
+        isAble:false
     },
     {
-        slotname: "ML1",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "ML2",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "ML3",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "ML4",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "ML5",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "AL1",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "AL2",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "AL3",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
     {
-        slotname: "AL4",
         slot: "",
         classAttend: 0,
-        classTotal:14
+        isAble:false
     },
-    {
-        slotname: "AL5",
-        slot: "",
-        classAttend: 0,
-        classTotal:14
-    }
 ]

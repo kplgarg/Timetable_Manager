@@ -7,7 +7,7 @@ export default function Home() {
     const [oldvalue, setOldvalue] = React.useState(true)
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem('oldv'));
-        if (items!=null) {
+        if (items != null) {
             setOldvalue(items);
         }
     }, []);
@@ -35,7 +35,7 @@ export default function Home() {
     }
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem('isH'));
-        if (items!=null) {
+        if (items != null) {
             setIsHome(items);
         }
     }, []);

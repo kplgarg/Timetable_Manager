@@ -19,11 +19,6 @@ const signUpTemplate = new Schema({
         //required: true,
         minLength: 8
     },
-    confirmpassword: {
-        type: String,
-        // required: true,
-        minLength: 8
-    },
     jti:{
         type:String
     },
@@ -35,534 +30,126 @@ const signUpTemplate = new Schema({
         type: Array,
         default: [
             {
-                slotname: "A",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "B",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "C",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "D",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "E",
                 slot: "",
                 classAttend: 0,
-                classTotal: 42
+                isAble:false
             },
             {
-                slotname: "F",
                 slot: "",
                 classAttend: 0,
-                classTotal: 42
+                isAble:false
             },
             {
-                slotname: "G",
                 slot: "",
                 classAttend: 0,
-                classTotal: 42
+                isAble:false
             },
             {
-                slotname: "A1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "B1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "C1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "D1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 56
+                isAble:false
             },
             {
-                slotname: "E1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 42
+                isAble:false
             },
+            
             {
-                slotname: "F1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 42
+                isAble:false
             },
             {
-                slotname: "G1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 42
+                isAble:false
             },
             {
-                slotname: "ML1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "ML2",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "ML3",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "ML4",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "ML5",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "AL1",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "AL2",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "AL3",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "AL4",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
+                isAble:false
             },
             {
-                slotname: "AL5",
                 slot: "",
                 classAttend: 0,
-                classTotal: 14
-            }
-        ]
-    },
-    MONDAY: {
-        type: Array,
-        default: [
-            {
-                slotname: "C",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
+                isAble:false
             },
-            {
-                slotname: "C1",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "ML1",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-11.55AM"
-            },
-            {
-                slotname: "A",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-9.55AM"
-            },
-            {
-                slotname: "B",
-                slot: "",
-                isDisabled: "false",
-                timing: "10.00AM-10.55AM"
-            },
-            {
-                slotname: "D",
-                slot: "",
-                isDisabled: "false",
-                timing: "11.00AM-11.55AM"
-            },
-            {
-                slotname: "F",
-                slot: "",
-                isDisabled: "false",
-                timing: "12.00PM-12.55PM"
-            },
-            {
-                slotname: "AL1",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-4.55PM"
-            },
-            {
-                slotname: "A1",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-2.55PM"
-            },
-            {
-                slotname: "B1",
-                slot: "",
-                isDisabled: "false",
-                timing: "3.00PM-3.55PM"
-            },
-            {
-                slotname: "D1",
-                slot: "",
-                isDisabled: "false",
-                timing: "4.00PM-4.55PM"
-            },
-            {
-                slotname: "F1",
-                slot: "",
-                isDisabled: "false",
-                timing: "5.00PM-5.55PM"
-            }
-        ]
-    },
-    TUESDAY: {
-        type: Array,
-        default: [
-            {
-                slotname: "E",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "E1",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "ML2",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-11.55AM"
-            },
-            {
-                slotname: "A",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-9.55AM"
-            },
-            {
-                slotname: "C",
-                slot: "",
-                isDisabled: "false",
-                timing: "10.00AM-10.55AM"
-            },
-            {
-                slotname: "D",
-                slot: "",
-                isDisabled: "false",
-                timing: "11.00AM-11.55AM"
-            },
-            {
-                slotname: "F",
-                slot: "",
-                isDisabled: "false",
-                timing: "12.00PM-12.55PM"
-            },
-            {
-                slotname: "AL2",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-4.55PM"
-            },
-            {
-                slotname: "A1",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-2.55PM"
-            },
-            {
-                slotname: "C1",
-                slot: "",
-                isDisabled: "false",
-                timing: "3.00PM-3.55PM"
-            },
-            {
-                slotname: "D1",
-                slot: "",
-                isDisabled: "false",
-                timing: "4.00PM-4.55PM"
-            },
-            {
-                slotname: "F1",
-                slot: "",
-                isDisabled: "false",
-                timing: "5.00PM-5.55PM"
-            }
-        ]
-    },
-    WEDNESDAY: {
-        type: Array,
-        default: [
-            {
-                slotname: "B",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "B1",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "ML3",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-11.55AM"
-            },
-            {
-                slotname: "A",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-9.55AM"
-            },
-            {
-                slotname: "C",
-                slot: "",
-                isDisabled: "false",
-                timing: "10.00AM-10.55AM"
-            },
-            {
-                slotname: "E",
-                slot: "",
-                isDisabled: "false",
-                timing: "11.00AM-11.55AM"
-            },
-            {
-                slotname: "G",
-                slot: "",
-                isDisabled: "false",
-                timing: "12.00PM-12.55PM"
-            },
-            {
-                slotname: "AL3",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-4.55PM"
-            },
-            {
-                slotname: "A1",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-2.55PM"
-            },
-            {
-                slotname: "C1",
-                slot: "",
-                isDisabled: "false",
-                timing: "3.00PM-3.55PM"
-            },
-            {
-                slotname: "E1",
-                slot: "",
-                isDisabled: "false",
-                timing: "4.00PM-4.55PM"
-            },
-            {
-                slotname: "G1",
-                slot: "",
-                isDisabled: "false",
-                timing: "5.00PM-5.55PM"
-            }
-        ]
-    },
-    THURSDAY: {
-        type: Array,
-        default: [
-            {
-                slotname: "D",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "D1",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "ML4",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-11.55AM"
-            },
-            {
-                slotname: "B",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-9.55AM"
-            },
-            {
-                slotname: "C",
-                slot: "",
-                isDisabled: "false",
-                timing: "10.00AM-10.55AM"
-            },
-            {
-                slotname: "E",
-                slot: "",
-                isDisabled: "false",
-                timing: "11.00AM-11.55AM"
-            },
-            {
-                slotname: "G",
-                slot: "",
-                isDisabled: "false",
-                timing: "12.00PM-12.55PM"
-            },
-            {
-                slotname: "AL4",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-4.55PM"
-            },
-            {
-                slotname: "B1",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-2.55PM"
-            },
-            {
-                slotname: "C1",
-                slot: "",
-                isDisabled: "false",
-                timing: "3.00PM-3.55PM"
-            },
-            {
-                slotname: "E1",
-                slot: "",
-                isDisabled: "false",
-                timing: "4.00PM-4.55PM"
-            },
-            {
-                slotname: "G1",
-                slot: "",
-                isDisabled: "false",
-                timing: "5.00PM-5.55PM"
-            }
-        ]
-    },
-    FRIDAY: {
-        type: Array,
-        default: [
-            {
-                slotname: "A",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "A1",
-                slot: "",
-                isDisabled: "false",
-                timing: "8.00AM-8.55AM"
-            },
-            {
-                slotname: "ML5",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-11.55AM"
-            },
-            {
-                slotname: "B",
-                slot: "",
-                isDisabled: "false",
-                timing: "9.00AM-9.55AM"
-            },
-            {
-                slotname: "D",
-                slot: "",
-                isDisabled: "false",
-                timing: "10.00AM-10.55AM"
-            },
-            {
-                slotname: "F",
-                slot: "",
-                isDisabled: "false",
-                timing: "11.00AM-11.55AM"
-            },
-            {
-                slotname: "G",
-                slot: "",
-                isDisabled: "false",
-                timing: "12.00PM-12.55PM"
-            },
-            {
-                slotname: "AL5",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-4.55PM"
-            },
-            {
-                slotname: "B1",
-                slot: "",
-                isDisabled: "false",
-                timing: "2.00PM-2.55PM"
-            },
-            {
-                slotname: "D1",
-                slot: "",
-                isDisabled: "false",
-                timing: "3.00PM-3.55PM"
-            },
-            {
-                slotname: "F1",
-                slot: "",
-                isDisabled: "false",
-                timing: "4.00PM-4.55PM"
-            },
-            {
-                slotname: "G1",
-                slot: "",
-                isDisabled: "false",
-                timing: "5.00PM-5.55PM"
-            }
         ]
     }
 })

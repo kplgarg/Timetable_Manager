@@ -3,11 +3,9 @@ const router = express.Router()
 const signUpTemplateCopy = require('../models/SignUpModels')
 const onetime = require('../models/Otp')
 const User = require('../models/SignUpModels')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 const saltRounds = 10
-let weekday = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'][new Date().getDay()]
-
 router.post('/signup', (request, response) => {
     if (request.body.password !== request.body.confirmpassword) {
         response.send("123")
@@ -18,7 +16,6 @@ router.post('/signup', (request, response) => {
             lname: request.body.lname,
             email: request.body.email,
             password: hash,
-            confirmpassword: hash
 
         })
         // console.log(signUpUser)
@@ -48,242 +45,63 @@ router.post('/signup', (request, response) => {
 
 router.post('/addslot', (request, response) => {
 
-    User.updateOne(
-        { "_id": request.body.user_id, "timetab.slotname": request.body.slotname },
-        { $set: { "timetab.$.slot": request.body.slot.toUpperCase(), "timetab.$.classAttend": 0 } }
-    ).then(res => {
-        //console.log("Slot  Addedd Succesfully");
-    }).catch((err) => {
-        console.log(err)
-        //console.log("Slot  Addedd Unsuccesfully");
-    })
-    User.updateOne(
-        { "_id": request.body.user_id, "MONDAY.slotname": request.body.slotname },
-        { $set: { "MONDAY.$.slot": request.body.slot.toUpperCase(), "MONDAY.$.isDisabled": "false" } }
-    ).then(res => {
-        //console.log("Slot  MONDAY Succesfully");
-    }).catch((err) => {
-        console.log(err)
-        //console.log("Slot  MONDAY Unsuccesfully");
-    })
-    User.updateOne(
-        { "_id": request.body.user_id, "TUESDAY.slotname": request.body.slotname },
-        { $set: { "TUESDAY.$.slot": request.body.slot.toUpperCase(), "TUESDAY.$.isDisabled": "false" } }
-    ).then(res => {
-        //console.log("Slot  TUESDAY Succesfully");
-    }).catch((err) => {
-        console.log(err)
-        //console.log("Slot  TUESDAY Unsuccesfully");
-    })
-    User.updateOne(
-        { "_id": request.body.user_id, "WEDNESDAY.slotname": request.body.slotname },
-        { $set: { "WEDNESDAY.$.slot": request.body.slot.toUpperCase(), "WEDNESDAY.$.isDisabled": "false" } }
-    ).then(res => {
-        console.log("Slot  WEDNESDAY Succesfully");
-    }).catch((err) => {
-        console.log(err)
-        //console.log("Slot  WEDNESDAY Unsuccesfully");
-    })
-    User.updateOne(
-        { "_id": request.body.user_id, "THURSDAY.slotname": request.body.slotname },
-        { $set: { "THURSDAY.$.slot": request.body.slot.toUpperCase(), "THURSDAY.$.isDisabled": "false" } }
-    ).then(res => {
-        //console.log("Slot  THURSDAY Succesfully");
-    }).catch((err) => {
-        console.log(err)
-        //console.log("Slot  THURSDAY Unsuccesfully");
-    })
-    User.updateOne(
-        { "_id": request.body.user_id, "FRIDAY.slotname": request.body.slotname },
-        { $set: { "FRIDAY.$.slot": request.body.slot.toUpperCase(), "FRIDAY.$.isDisabled": "false" } }
-    ).then(res => {
-        //console.log("Slot  FRIDAY Succesfully");
-    }).catch((err) => {
-        console.log(err)
-        //console.log("Slot  FRIDAY Unsuccesfully");
-    })
+    User.findByIdAndUpdate({ _id: request.body.user_id },
+        {
+            $set: {
+                [`timetab.${request.body.index}.slot`]: request.body.slot,
+                [`timetab.${request.body.index}.classAttend`]: 0,
+            },
+        },
+        {
+            new: true,
+        })
+        .then(res => {
+            //console.log("Slot  Addedd Succesfully");
+        }).catch((err) => {
+            console.log(err)
+            //console.log("Slot  Addedd Unsuccesfully");
+        })
     response.send()
-
 })
 router.post('/addtaken', (request, response) => {
 
-    User.updateOne(
-        { "_id": request.body.user_id, "timetab.slotname": request.body.slotname },
-        { $inc: { "timetab.$.classAttend": 1 } }
+    User.findByIdAndUpdate(
+        { _id: request.body.user_id },
+        {
+            $inc: { [`timetab.${request.body.index}.classAttend`]: 1 },
+            $set: { [`timetab.${request.body.index}.isAble`]: 1 }
+        }
     ).then(res => {
         console.log("Slot  Addedd Succesfully");
     })
         .catch((err) => {
             console.log(err)
         })
-    if (weekday === 'MONDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "MONDAY.slotname": request.body.slotname },
-            { $set: { "MONDAY.$.isDisabled": "true" } }
-        ).then(res => {
-            console.log("Monday Disabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'TUESDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "TUESDAY.slotname": request.body.slotname },
-            { $set: { "TUESDAY.$.isDisabled": "true" } }
-        ).then(res => {
-            console.log("Tuesday Disabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'WEDNESDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "WEDNESDAY.slotname": request.body.slotname },
-            { $set: { "WEDNESDAY.$.isDisabled": "true" } }
-        ).then(res => {
-            console.log("Wednesday Disabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'THURSDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "THURSDAY.slotname": request.body.slotname },
-            { $set: { "THURSDAY.$.isDisabled": "true" } }
-        ).then(res => {
-            console.log("Thursday Disabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'FRIDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "FRIDAY.slotname": request.body.slotname },
-            { $set: { "FRIDAY.$.isDisabled": "true" } }
-        ).then(res => {
-            console.log("Friday Disabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
     response.send()
-
 })
 router.post('/adduntaken', (request, response) => {
 
     User.updateOne(
-        { "_id": request.body.user_id, "timetab.slotname": request.body.slotname },
-        { $inc: { "timetab.$.classAttend": -1 } }
+        { "_id": request.body.user_id },
+        {
+            $inc: { [`timetab.${request.body.index}.classAttend`]: -1 },
+            $set: { [`timetab.${request.body.index}.isAble`]: 0 }
+        }
     ).then(res => {
         console.log("Slot  Minus Succesfully");
     })
         .catch((err) => {
             console.log(err)
         })
-    if (weekday === 'MONDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "MONDAY.slotname": request.body.slotname },
-            { $set: { "MONDAY.$.isDisabled": "false" } }
-        ).then(res => {
-            console.log("Monday Enabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'TUESDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "TUESDAY.slotname": request.body.slotname },
-            { $set: { "TUESDAY.$.isDisabled": "false" } }
-        ).then(res => {
-            console.log("Tuesday Enabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'WEDNESDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "WEDNESDAY.slotname": request.body.slotname },
-            { $set: { "WEDNESDAY.$.isDisabled": "false" } }
-        ).then(res => {
-            console.log("Wednesday Enabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'THURSDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "THURSDAY.slotname": request.body.slotname },
-            { $set: { "THURSDAY.$.isDisabled": "false" } }
-        ).then(res => {
-            console.log("Thursday Enabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    else if (weekday === 'FRIDAY') {
-        User.updateOne(
-            { "_id": request.body.user_id, "FRIDAY.slotname": request.body.slotname },
-            { $set: { "FRIDAY.$.isDisabled": "false" } }
-        ).then(res => {
-            console.log("Friday Enabled");
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
     response.send()
 
 })
 router.post('/reseter', (request, response) => {
-    weekday === 'TUESDAY' && User.updateOne(
-        { "_id": request.body.user_id },
-        { $set: { "MONDAY.$[outer].isDisabled": "false" } },
-        {
-            "arrayFilters": [{ "outer.isDisabled": "true" }], "multi": true
-        }
+    User.updateMany(
+        { _id: request.body.user_id },
+        { $set: { [`timetab.$[].isAble`]: 0 } }
     ).then().catch()
-    weekday === 'WEDNESDAY' && User.updateOne(
-        { "_id": request.body.user_id },
-        { $set: { "TUESDAY.$[outer].isDisabled": "false" } },
-        {
-            "arrayFilters": [{ "outer.isDisabled": "true" }], "multi": true
-        }
-    ).then().catch()
-    weekday === 'THURSDAY' && User.updateOne(
-        { "_id": request.body.user_id },
-        { $set: { "WEDNESDAY.$[outer].isDisabled": "false" } },
-        {
-            "arrayFilters": [{ "outer.isDisabled": "true" }], "multi": true
-        }
-    ).then().catch()
-    //console.log(weekday)
-    weekday === 'FRIDAY' && User.updateOne(
-
-        { "_id": request.body.user_id },
-        { $set: { "THURSDAY.$[outer].isDisabled": "false" } },
-        {
-            "arrayFilters": [{ "outer.isDisabled": "true" }], "multi": true
-        }
-    ).then().catch()
-    weekday === 'SATURDAY' && User.updateOne(
-        { "_id": request.body.user_id },
-        { $set: { "FRIDAY.$[outer].isDisabled": "false" } },
-        {
-            "arrayFilters": [{ "outer.isDisabled": "true" }], "multi": true
-        }
-    ).then().catch()
-
     response.send()
-
 })
 router.get('/getdata/:id', (request, response) => {
 
@@ -299,28 +117,22 @@ router.get('/getdataa/:id', (request, response) => {
     //console.log(request.params.id)
     User.findOne({ "_id": request.params.id })
         .then(res => {
-            //console.log(res)
-            if (weekday === 'THURSDAY')
-                response.send(res.THURSDAY)
-            else if (weekday === 'FRIDAY')
-                response.send(res.FRIDAY)
-            else if (weekday === 'TUESDAY')
-                response.send(res.TUESDAY)
-            else if (weekday === 'WEDNESDAY')
-                response.send(res.WEDNESDAY)
-            else if (weekday === 'MONDAY')
-                response.send(res.MONDAY)
-            else
-                response.send()
+            response.send(res.timetab)
         })
         .catch((err) => {
             response.send(null)
         })
 })
 router.post('/deleteslot', (request, response) => {
-    User.updateOne(
+    User.updateMany(
         { "_id": request.body.user_id },
-        { $set: { "timetab.$[].slot": "", "MONDAY.$[].slot": "", "TUESDAY.$[].slot": "", "WEDNESDAY.$[].slot": "", "THURSDAY.$[].slot": "", "FRIDAY.$[].slot": "" } }
+        {
+            $set: {
+                [`timetab.$[].slot`]: "",
+                [`timetab.$[].classAttend`]: 0,
+                [`timetab.$[].isAble`]: false,
+            }
+        }
     ).then(res => {
         //console.log("Deleted Succesfully");
     }).catch((err) => {
@@ -333,58 +145,19 @@ router.post('/deleteslot', (request, response) => {
 router.post('/onedeleteslot', (request, response) => {
     console.log(request.body)
     User.updateOne(
-        { "_id": request.body.user_id, "timetab.slotname": request.body.slotname },
-        { $set: { "timetab.$.slot": "", "timetab.$.classAttend": 0 } }
+        { "_id": request.body.user_id },
+        {
+            $set: {
+                [`timetab.${request.body.index}.slot`]: "",
+                [`timetab.${request.body.index}.classAttend`]: 0,
+                [`timetab.${request.body.index}.isAble`]: 0,
+            }
+        }
     ).then(res => {
         //console.log('Deleted - ' + res);
     })
         .catch((err) => {
             console.log('Error: ' + err);
-        })
-    User.updateOne(
-        { "_id": request.body.user_id, "MONDAY.slotname": request.body.slotname },
-        { $set: { "MONDAY.$.slot": "" } }
-    ).then(res => {
-        //console.log("DELETED ONE MONDAY");
-    })
-        .catch((err) => {
-            console.log("DELETED ONE NOT MONDAY");
-        })
-    User.updateOne(
-        { "_id": request.body.user_id, "TUESDAY.slotname": request.body.slotname },
-        { $set: { "TUESDAY.$.slot": "" } }
-    ).then(res => {
-        //console.log("DELETED ONE TUESDAY");
-    })
-        .catch((err) => {
-            console.log("DELETED ONE NOT TUESDAY");
-        })
-    User.updateOne(
-        { "_id": request.body.user_id, "WEDNESDAY.slotname": request.body.slotname },
-        { $set: { "WEDNESDAY.$.slot": "" } }
-    ).then(res => {
-        //console.log("DELETED ONE WEDNESDAY");
-    })
-        .catch((err) => {
-            console.log("DELETED ONE NOT WEDNESDAY");
-        })
-    User.updateOne(
-        { "_id": request.body.user_id, "THURSDAY.slotname": request.body.slotname },
-        { $set: { "THURSDAY.$.slot": "" } }
-    ).then(res => {
-        //console.log("DELETED ONE THURSDAY");
-    })
-        .catch((err) => {
-            console.log("DELETED ONE NOT THURSDAY");
-        })
-    User.updateOne(
-        { "_id": request.body.user_id, "FRIDAY.slotname": request.body.slotname },
-        { $set: { "FRIDAY.$.slot": "" } }
-    ).then(res => {
-        //console.log("DELETED ONE FRIDAY");
-    })
-        .catch((err) => {
-            console.log("DELETED ONE NOT FRIDAY");
         })
     response.send()
 

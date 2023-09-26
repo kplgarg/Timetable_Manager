@@ -50,6 +50,7 @@ router.post('/addslot', (request, response) => {
             $set: {
                 [`timetab.${request.body.index}.slot`]: request.body.slot,
                 [`timetab.${request.body.index}.classAttend`]: 0,
+                [`timetab.${request.body.index}.isAble`]: false,
             },
         },
         {
@@ -69,7 +70,7 @@ router.post('/addtaken', (request, response) => {
         { _id: request.body.user_id },
         {
             $inc: { [`timetab.${request.body.index}.classAttend`]: 1 },
-            $set: { [`timetab.${request.body.index}.isAble`]: 1 }
+            $set: { [`timetab.${request.body.index}.isAble`]: true }
         }
     ).then(res => {
         console.log("Slot  Addedd Succesfully");
@@ -85,7 +86,7 @@ router.post('/adduntaken', (request, response) => {
         { "_id": request.body.user_id },
         {
             $inc: { [`timetab.${request.body.index}.classAttend`]: -1 },
-            $set: { [`timetab.${request.body.index}.isAble`]: 0 }
+            $set: { [`timetab.${request.body.index}.isAble`]: false }
         }
     ).then(res => {
         console.log("Slot  Minus Succesfully");
@@ -95,13 +96,6 @@ router.post('/adduntaken', (request, response) => {
         })
     response.send()
 
-})
-router.post('/reseter', (request, response) => {
-    User.updateMany(
-        { _id: request.body.user_id },
-        { $set: { [`timetab.$[].isAble`]: 0 } }
-    ).then().catch()
-    response.send()
 })
 router.get('/getdata/:id', (request, response) => {
 
@@ -140,7 +134,7 @@ router.post('/onedeleteslot', (request, response) => {
             $set: {
                 [`timetab.${request.body.index}.slot`]: "",
                 [`timetab.${request.body.index}.classAttend`]: 0,
-                [`timetab.${request.body.index}.isAble`]: 0,
+                [`timetab.${request.body.index}.isAble`]: false,
             }
         }
     ).then(res => {

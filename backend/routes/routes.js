@@ -113,16 +113,6 @@ router.get('/getdata/:id', (request, response) => {
             response.send(null)
         })
 })
-router.get('/getdataa/:id', (request, response) => {
-    //console.log(request.params.id)
-    User.findOne({ "_id": request.params.id })
-        .then(res => {
-            response.send(res.timetab)
-        })
-        .catch((err) => {
-            response.send(null)
-        })
-})
 router.post('/deleteslot', (request, response) => {
     User.updateMany(
         { "_id": request.body.user_id },

@@ -8,15 +8,12 @@ export default function TodayMain() {
     let weekday = new Date().getDay() - 1
     const [isDataa, setIsDataa] = React.useState(Data)
     const getData = () => {
-        let urll = `${BACKEND_URL}/app/getdataa/` + JSON.parse(localStorage.getItem('user_id')).data
+        let urll = `${BACKEND_URL}/app/getdata/` + JSON.parse(localStorage.getItem('user_id')).data
         axios.get(urll).then(res => {
             setIsDataa(res.data)
         }).catch(err => console.log(err))
     }
     getData()
-    const ress = {
-        user_id: JSON.parse(localStorage.getItem('user_id')).data,
-    }
     function classDone(event) {
         const jugad = {
             user_id: JSON.parse(localStorage.getItem('user_id')).data,
@@ -54,14 +51,14 @@ export default function TodayMain() {
         return tt[weekday].map((daata) => {
             jj++;
             return (
-                isDataa[daata].slot != "" &&
+                isDataa[daata].slot !== "" &&
                 <div className="class-taken" id={daata}>
                     <div className="subject-code">{isDataa[daata].slot.toUpperCase()}</div>
                     <p>{timing[jj]}</p>
-                    {isDataa[daata].isAble == false && <div className="social-icon" >
+                    {isDataa[daata].isAble === false && <div className="social-icon" >
                         <FontAwesomeIcon className="icons done" icon={faCheck} onClick={classDone} id={daata} value={isDataa[daata].slot.toUpperCase()} />
                     </div>}
-                    {isDataa[daata].isAble == true && <div className="social-icon" >
+                    {isDataa[daata].isAble === true && <div className="social-icon" >
                         <FontAwesomeIcon className="icons done doned" icon={faXmark} onClick={classunDone} id={daata} value={isDataa[daata].slot.toUpperCase()} />
                     </div>}
                 </div>

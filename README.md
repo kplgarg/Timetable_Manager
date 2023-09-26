@@ -75,6 +75,6 @@ Now your project is up and running, with the frontend accessible at the specifie
 
 ## Deployed Site
 
-Access the Timetable Manager at: ()
+Access the Timetable Manager at: (https://timetablemanager.netlify.app/)
 
 For questions or assistance, contact: gargkapill2001@gmail.com.
